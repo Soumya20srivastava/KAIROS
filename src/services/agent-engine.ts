@@ -293,7 +293,7 @@ export class AgentEngine {
         decision_type: 'authorization_check',
         context: { step: step as unknown as JsonObject, step_index: stepIndex, tool_name: toolCall.tool_name },
         chosen_option: { authorized: false, reason: errorMessage },
-        alternatives: Array.from(this.allowedTools),
+        alternatives: Array.from(this.allowedTools).map((tool) => ({ value: tool })),
         reasoning: `Rejected ${toolCall.tool_name} because it failed authorization or validation.`,
         confidence_score: 1,
       });
